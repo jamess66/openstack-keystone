@@ -22,7 +22,7 @@ keystone-manage bootstrap --bootstrap-password password \
   --bootstrap-region-id RegionOne
 
 # Start Keystone in background
-uwsgi --http 0.0.0.0:5000 --wsgi-file /usr/local/bin/keystone-wsgi-public.py &
+uwsgi --http 0.0.0.0:5000 --wsgi-file /app/keystone-source/docker/scripts/wsgi-app.py &
 PID=$!
 
 # Wait for Keystone

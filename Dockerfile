@@ -24,11 +24,10 @@ RUN pip install uwsgi pymysql python-memcached python-openstackclient
 COPY . /app/keystone-source
 RUN pip install -e /app/keystone-source
 
-COPY docker/keystone.conf /etc/keystone/keystone.conf
-COPY docker/bootstrap.sh /usr/local/bin/bootstrap.sh
-COPY docker/wsgi.py /usr/local/bin/keystone-wsgi-public.py
-RUN chmod +x /usr/local/bin/bootstrap.sh
+RUN mkdir -p /etc/keystone && \
+    ln -s /app/keystone-source/etc/keystone.conf /etc/keystone/keystone.conf && \
+    chmod +x /app/keystone-source/docker/scripts/bootstrap.sh
 
 EXPOSE 5000
 
-CMD ["/usr/local/bin/bootstrap.sh"]
+CMD ["/app/keystone-source/docker/scripts/bootstrap.sh"]
