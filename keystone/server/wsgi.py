@@ -28,3 +28,6 @@ def initialize_public_application():
 # Keystone does not differentiate between "admin" and public with the removal
 # of V2.0
 initialize_admin_application = initialize_public_application
+
+# WSGI application object
+application = initialize_public_application()
